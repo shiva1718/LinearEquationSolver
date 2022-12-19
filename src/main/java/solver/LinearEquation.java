@@ -21,9 +21,9 @@ public class LinearEquation {
         for (int r = 0; r < rowCount; r++) {
             Complex number = matrix.rows[r].values[r];
             if (!number.equals(Complex.ONE)) {
-                System.out.println("is not 1");
+//                System.out.println("is not 1");
                 if (number.getReal() != 0 || number.getImaginary() != 0) {
-                    System.out.println("is not zero");
+//                    System.out.println("is not zero");
                     compressEquation(r, number);
                 } else {
                     boolean isFoundInThisColumn = false;
@@ -34,7 +34,7 @@ public class LinearEquation {
                               && matrix.rows[i].values[r].getImaginary() != 0) {
                             matrix.swapRow(r, i);
                             isFoundInThisColumn = true;
-                            System.out.printf("R%d <-> R%d\n", r + 1, i + 1);
+//                            System.out.printf("R%d <-> R%d\n", r + 1, i + 1);
                             break;
                         }
                     }
@@ -44,7 +44,7 @@ public class LinearEquation {
                                   && matrix.rows[r].values[i].getImaginary() != 0) {
                                 matrix.swapColumn(r, i);
                                 isFoundInThisRow = true;
-                                System.out.printf("C%d <-> C%d\n", r + 1, i + 1);
+//                                System.out.printf("C%d <-> C%d\n", r + 1, i + 1);
                                 break;
                             }
                         }
@@ -56,8 +56,8 @@ public class LinearEquation {
                                       && matrix.rows[i].values[j].getImaginary() != 0) {
                                     matrix.swapRow(r, i);
                                     matrix.swapColumn(r, j);
-                                    System.out.printf("R%d <-> R%d\n", r + 1, i + 1);
-                                    System.out.printf("C%d <-> C%d\n", r + 1, j + 1);
+//                                    System.out.printf("R%d <-> R%d\n", r + 1, i + 1);
+//                                    System.out.printf("C%d <-> C%d\n", r + 1, j + 1);
                                     isFoundInDiagonal = true;
                                     break;
                                 }
@@ -69,21 +69,21 @@ public class LinearEquation {
                     }
                     boolean isFoundSolution = isFoundInThisColumn || isFoundInThisRow || isFoundInDiagonal;
                     if (!isFoundSolution) {
-                        System.out.println("Line 69");
+//                        System.out.println("Line 69");
                         if (Arrays.stream(matrix.rows[r].values)
                                 .limit(matrix.rows[r].values.length - 1)
                                 .filter(value -> value.getReal() == 0 && value.getImaginary() == 0)
                                 .count() == matrix.rows[r].values.length - 1) {
                             if (matrix.rows[r].values[matrix.rows[r].values.length - 1].getReal() == 0 &&
                                     matrix.rows[r].values[matrix.rows[r].values.length - 1].getImaginary() == 0) {
-                                System.out.println("Infinitely many solutions 75");
+//                                System.out.println("Infinitely many solutions 75");
                                 return Solution.INFINITE;
                             } else {
-                                System.out.println("No Solution 78");
+//                                System.out.println("No Solution 78");
                                 return Solution.ZERO;
                             }
                         } else {
-                            System.out.println("Infinitely many solutions 81");
+//                            System.out.println("Infinitely many solutions 81");
                             return Solution.INFINITE;
                         }
                     } else {
@@ -98,13 +98,13 @@ public class LinearEquation {
                 Complex factor = matrix.rows[i].values[r].negate();
                 if (factor.getReal() != 0 || factor.getImaginary() != 0) {
 
-                    System.out.printf("%s * R%d + R%d -> R%d\n", factor, r + 1, i + 1, i + 1);
+//                    System.out.printf("%s * R%d + R%d -> R%d\n", factor, r + 1, i + 1, i + 1);
                     Complex[] factoredValues = matrix.rows[r].multiplyAndGet(factor);
                     matrix.rows[i].addValues(factoredValues);
                     printResult();
                 }
             }
-            System.out.println("r=" + r);
+//            System.out.println("r=" + r);
 
         }
         printResult();
@@ -114,7 +114,7 @@ public class LinearEquation {
     }
 
     private void compressEquation(int r, Complex number) {
-        System.out.printf("R%d / %s -> R%d\n", r + 1, number.toString(), r + 1);
+//        System.out.printf("R%d / %s -> R%d\n", r + 1, number.toString(), r + 1);
         for (int i = 0; i < matrix.rows[r].values.length; i++) {
             matrix.rows[r].values[i] = matrix.rows[r].values[i].divide(number);
         }
@@ -122,7 +122,7 @@ public class LinearEquation {
     }
 
     public void printResult() {
-        System.out.println(matrix.toString());
+//        System.out.println(matrix.toString());
     }
 
     public Solution setVariablesValue() {

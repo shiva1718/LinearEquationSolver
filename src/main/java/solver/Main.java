@@ -19,7 +19,7 @@ public class Main {
             }
         }
         File inputFile = new File(inputFileName);
-        System.out.println(inputFileName);
+//        System.out.println(inputFileName);
         try (Scanner kb = new Scanner(inputFile)) {
             int numOfVariables = kb.nextInt();
             int numOfEquations = kb.nextInt();
@@ -49,9 +49,9 @@ public class Main {
                         }
                     }
                     complexInputMatrix[i][j] = new Complex(realPart, imaginaryPart);
-                    System.out.print(complexInputMatrix[i][j].toString() + " ");
+//                    System.out.print(complexInputMatrix[i][j].toString() + " ");
                 }
-                System.out.println();
+//                System.out.println();
                 if (Arrays.stream(complexInputMatrix[i])
                         .limit(numOfVariables)
                         .filter(value -> value.getReal() == 0 && value.getImaginary() == 0)
@@ -60,7 +60,7 @@ public class Main {
                         complexInputMatrix[i][numOfVariables].getImaginary() == 0) {
 
                     toRemove.add(i);
-                    System.out.println("added " + i);
+//                    System.out.println("added " + i);
                     numOfSignificantEquations--;
                 }
                 if (i > 0) {
@@ -78,17 +78,17 @@ public class Main {
             int controller = 0;
             for (int i = 0; i < numOfEquations; i++) {
                 if (toRemove.contains(i)) {
-                    System.out.println("removed this " + i);
-                    System.out.println("numOfSignificantEquations = " + numOfSignificantEquations);
-                    System.out.println("numOfEquations = " + numOfEquations);
+//                    System.out.println("removed this " + i);
+//                    System.out.println("numOfSignificantEquations = " + numOfSignificantEquations);
+//                    System.out.println("numOfEquations = " + numOfEquations);
                     controller++;
                     continue;
                 }
                 if (numOfVariables + 1 >= 0)
                     System.arraycopy(complexInputMatrix[i], 0, complexSignificantInput[i - controller], 0, numOfVariables + 1);
             }
-            System.out.println(Arrays.deepToString(complexInputMatrix));
-            System.out.println(Arrays.deepToString(complexSignificantInput));
+//            System.out.println(Arrays.deepToString(complexInputMatrix));
+//            System.out.println(Arrays.deepToString(complexSignificantInput));
             Matrix matrix = new Matrix(numOfSignificantEquations);
             matrix.setMatrix(complexSignificantInput);
             LinearEquation solver = new LinearEquation(matrix, numOfSignificantEquations);
